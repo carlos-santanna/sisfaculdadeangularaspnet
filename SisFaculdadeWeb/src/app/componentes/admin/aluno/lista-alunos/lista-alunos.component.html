@@ -1,0 +1,109 @@
+<mat-card class="example-card">
+  <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+          <p-avatar styleClass="p-mr-2" size="large" shape="circle">
+              <mat-icon mat-list-icon>people</mat-icon>
+          </p-avatar>
+      </div>
+      <mat-card-title>
+          <div class="mat-h1">Alunos</div>
+      </mat-card-title>
+      <mat-card-subtitle>Lista todos os alunos cadastrados</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+      <p-table #dt [value]="listaItems" [value]="listaItems" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true" [rows]="1000" [showCurrentPageReport]="true" [rowsPerPageOptions]="[1000,1500,2000]" [loading]="loading" responsiveLayout="scroll" [paginator]="true"
+          currentPageReportTemplate="Exibindo {first} de {last} de {totalRecords} registros" [filterDelay]="0" [globalFilterFields]="['nome']" [totalRecords]="totalRecords">
+          <ng-template pTemplate="caption">
+              <div class="align-right">
+                  <div>
+                      <button mat-raised-button color="primary" (click)="criarEditar(0)">
+                  <mat-icon>add</mat-icon>
+                  Novo Aluno</button>
+                  </div>
+                  <div>
+                     
+                  </div>
+              </div>
+          </ng-template>
+
+          <ng-template pTemplate="header">
+              <tr>
+                  <!-- <th pSortableColumn="partido">Partido
+                      <p-sortIcon field="partido"></p-sortIcon>
+                  </th> -->
+                  <th pSortableColumn="id">Matrícula
+                    <p-sortIcon field="id"></p-sortIcon>
+                    <p-columnFilter type="text" field="id" class="p-inputtext-sm" display="menu"></p-columnFilter>
+                </th>
+                  <th pSortableColumn="nome">Nome
+                      <p-sortIcon field="nome"></p-sortIcon>
+                      <p-columnFilter type="text" field="nome" class="p-inputtext-sm" display="menu"></p-columnFilter>
+                  </th>
+                  <th pSortableColumn="dataNascimento" style="text-align:center">Data de Nascimento
+                      <p-sortIcon field="dataNascimento"></p-sortIcon>
+                      <p-columnFilter type="text" field="dataNascimento" class="p-inputtext-sm" display="menu"></p-columnFilter>
+                  </th>
+
+                  <th pSortableColumn="" style="text-align:center">Qtd. de Cursos
+                      <p-sortIcon field=""></p-sortIcon>                      
+                  </th>
+                  <th>Opções</th>
+              </tr>
+              
+          </ng-template>
+          <ng-template pTemplate="body" let-lista>
+              <tr>
+                  <td><a (click)="criarEditar(lista)" class="link-click">{{lista.id}}</a></td>
+                  <td><a (click)="criarEditar(lista)" class="link-click">{{lista.nome}}</a></td>
+                  <td style="text-align:center">{{lista.dataNascimento | data}}</td>
+
+                  <td style="text-align:center">{{lista.alunosCursos?lista.alunosCursos.length:0}}</td>
+                  <td>
+                     
+
+                      <button mat-button [matMenuTriggerFor]="menu" mat-mini-fab color="primary">
+                        <mat-icon>settings</mat-icon>
+                      </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item  aria-label="Ver Cursos/disciplinas" (click)="listarDisciplinas(lista.id, lista.nome)">
+                                <mat-icon>bookmark</mat-icon>
+                              Ver disciplinas
+                            </button>
+                            
+                            <button mat-menu-item aria-label="Editar dados" (click)="criarEditar(lista)">
+                                <mat-icon>badge</mat-icon>
+                                Editar
+                              </button>
+
+                              <button mat-menu-item  aria-label="Remover" (click)="perguntaSeRemover(lista.id)">
+                                <mat-icon>delete</mat-icon>
+                                Excluir
+                              </button>
+
+                        </mat-menu>
+
+
+
+
+                  </td>
+              </tr>
+          </ng-template>
+      </p-table>
+
+  </mat-card-content>
+
+</mat-card>
+
+
+
+<p-dialog [header]="(!idSelected?'Adicionar novo':'Atualizar')+' Aluno'" [(visible)]="showModal" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [modal]="true" [style]="{width: '65vw'}" [baseZIndex]="9999999999" [draggable]="false" [closeOnEscape]="true"
+    [dismissableMask]="false" [resizable]="false" [closable]="true" (onHide)="showModal=false;idSelected=0; reLoad();">
+    <app-criar-editar-aluno [id]="idSelected" [opened]="showModal"></app-criar-editar-aluno>
+</p-dialog>
+
+
+<p-dialog [header]="'Disciplinas do aluno'" [(visible)]="showModalListaDisciplinas" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [modal]="true" [style]="{width: '65vw'}" [baseZIndex]="9999999999" [draggable]="false" [closeOnEscape]="true"
+    [dismissableMask]="false" [resizable]="false" [closable]="true" (onHide)="showModalListaDisciplinas=false;idSelected=0; reLoad();">
+    <app-lista-disciplinas-aluno [idSelected]="idSelected" [opened]="showModalListaDisciplinas" [nomeAluno]="nomeAlunoSelected"></app-lista-disciplinas-aluno>
+</p-dialog>
+

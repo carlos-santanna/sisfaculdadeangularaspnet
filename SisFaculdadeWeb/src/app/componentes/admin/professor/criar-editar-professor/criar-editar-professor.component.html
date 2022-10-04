@@ -1,0 +1,56 @@
+<mat-card class="mat-card-cadastro">
+  <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+          <p-avatar styleClass="p-mr-2" size="large" shape="circle">
+              <mat-icon>
+                  library_books
+              </mat-icon>
+          </p-avatar>
+      </div>
+      <mat-card-title>
+          <div class="mat-h1">
+              {{!id? 'Novo ': 'Atualizar'}}Professor
+
+          </div>
+      </mat-card-title>
+      <mat-card-subtitle>Preencha os campos assinalados como obrigatório.</mat-card-subtitle>
+  </mat-card-header>
+  
+  <mat-card-content>
+      <div>        
+          <div class="sub-section-1">
+              <form (ngSubmit)="onSubmit()" [formGroup]="form">
+                  <div class="container-input">
+                      <mat-form-field style="width: 100%" hintLabel="Informe o nome fantasia do Candidato/Liderança" appearance="outline">
+                          <mat-label>Nome do Professor</mat-label>
+                          <input name="nome" formControlName="nome" matInput #inputNome maxlength="200" placeholder="Nome do professor"
+                          required minlength="3" autocomplete="off" [disabled]="!isFormReady">
+                      </mat-form-field>
+                  </div>
+                  <div class="input-group">
+                    <app-data label="Data de nascimento" errorMessage="É necessário informar a data de nascimento"
+                     name="dataNascimento" formControlName="dataNascimento" required placeholder="DD/MM/AAAA"                     
+                     >
+                    </app-data>
+                </div>
+                <div class="container-input">
+                    <mat-form-field style="width: 100%" hintLabel="Informe o salário" appearance="outline">
+                        <mat-label>Nome do Professor</mat-label>
+                        <input name="salario" formControlName="salario" matInput #inputNome placeholder="Nome do professor"
+                        required maxlength="6" autocomplete="off" [disabled]="!isFormReady">
+                    </mat-form-field>
+                </div>
+                  <div class="" fxLayout="row" fxLayoutAlign="end center" style="margin-top:30px">                    
+                      <div fxFlex>
+                          <button mat-raised-button color="primary" 
+                          [disabled]="form.invalid || !isFormReady">{{!id?'Inserir':'Atualizar'}} Professor</button>
+
+                          
+                      </div>
+                  </div>
+                  
+              </form>
+          </div>
+      </div>
+  </mat-card-content>
+</mat-card>

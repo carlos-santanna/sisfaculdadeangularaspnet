@@ -1,0 +1,24 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8" [opened]="iniciaSideBarAberta" cdkScrollable>
+
+        <p-avatar label="{{getIniciaisUserLoggeding()}}" size="xlarge" [style]="{'background-color':corHeader, 'color': '#ffffff'}" shape="circle"></p-avatar>
+
+        <p class="nameUser">{{getPrimeiroNomeUsuarioLoggedin()}}</p>
+       <!--<button mat-button (click)="logout()">Efetuar Logout</button>-->
+        <div class="software-version">
+            {{softwareVersion}}
+        </div>
+        <mat-divider></mat-divider>
+
+
+
+        <p-panelMenu cdkDropList *ngIf="items" [model]="items" styleClass="sideNavMenu" [multiple]="false"></p-panelMenu>
+
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content mat-elevation-z8" [class.content_with_side_menu]="sidenav.opened">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

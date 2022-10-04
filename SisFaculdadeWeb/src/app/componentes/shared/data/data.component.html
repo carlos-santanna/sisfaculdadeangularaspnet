@@ -1,0 +1,13 @@
+{{data}}
+<mat-form-field appearance="outline">
+    <mat-label>{{label}}</mat-label>
+    <input [type]='type' [formControl]="input" [name]="name" matInput [matDatepicker]="dte" autocomplete="off" [placeholder]="placeholder" (click)="dte.open()" [min]="minDate" [max]="maxDate" maxlength="10" />
+
+    <mat-error *ngIf="isInvalid()">{{errorMessage}}</mat-error>
+    <mat-hint>DD/MM/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="dte">
+
+    </mat-datepicker-toggle>
+    <mat-datepicker #dte></mat-datepicker>
+
+</mat-form-field>

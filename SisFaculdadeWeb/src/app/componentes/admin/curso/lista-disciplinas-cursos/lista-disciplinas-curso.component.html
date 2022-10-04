@@ -1,0 +1,54 @@
+<mat-card class="example-card">
+  <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+          <p-avatar styleClass="p-mr-2" size="large" shape="circle">
+              <mat-icon mat-list-icon>library_books</mat-icon>
+          </p-avatar>
+      </div>
+      <mat-card-title>
+          <div class="mat-h1">{{nomeCurso}}</div>
+      </mat-card-title>
+      <mat-card-subtitle>Disciplinas cadastradas no curso</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+      <p-table #dt [value]="listaItems" [value]="listaItems" dataKey="id" styleClass="p-datatable-customers" 
+      [rowHover]="true" [rows]="1000" [showCurrentPageReport]="true" [rowsPerPageOptions]="[1000,1500,2000]"
+       [loading]="loading" responsiveLayout="scroll" [paginator]="false"
+          [globalFilterFields]="['nome']">
+          
+          <ng-template pTemplate="header">
+              <tr>
+                  <!-- <th pSortableColumn="partido">Partido
+                      <p-sortIcon field="partido"></p-sortIcon>
+                  </th> -->
+                  <th pSortableColumn="disciplina.disciplina">Disciplina
+                      <p-sortIcon field="disciplina.disciplina"></p-sortIcon>
+                      
+                  </th>
+                  <th pSortableColumn="disciplina.professorNome" style="text-align:center">Professor
+                      <p-sortIcon field="disciplina.professorNome"></p-sortIcon>
+                      
+                  </th>
+
+                  <th pSortableColumn="alunos" style="text-align:center">Média
+                      
+                  </th>                  
+              </tr>
+              
+          </ng-template>
+          <ng-template pTemplate="body" let-lista>
+              <tr>
+                  <td><a (click)="criarEditar(lista.disciplina)" class="link-click">{{lista.disciplina.disciplina}}</a></td>
+                  <td style="text-align:center">{{lista.disciplina.professorNome}}</td>
+
+                  <td style="text-align:center">{{lista.media??''}}</td>                  
+              </tr>
+          </ng-template>
+      </p-table>
+
+  </mat-card-content>
+
+</mat-card>
+
+
+

@@ -1,0 +1,47 @@
+<mat-card class="mat-card-cadastro">
+  <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+          <p-avatar styleClass="p-mr-2" size="large" shape="circle">
+              <mat-icon>
+                  library_books
+              </mat-icon>
+          </p-avatar>
+      </div>
+      <mat-card-title>
+          <div class="mat-h1">
+              {{!id? 'Novo ': 'Atualizar'}}Disciplina
+
+          </div>
+      </mat-card-title>
+      <mat-card-subtitle>Preencha os campos assinalados como obrigatório.</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+      <div>
+          <div class="sub-section-1">
+              <form (ngSubmit)="onSubmit()" [formGroup]="form">
+                  <div class="container-input">
+                      <mat-form-field style="width: 100%" hintLabel="Informe o nome fantasia do Candidato/Liderança" appearance="outline">
+                          <mat-label>Nome do Disciplina</mat-label>
+                          <input name="nome" formControlName="nome" matInput #inputNome maxlength="200" placeholder="Nome do disciplina"
+                          required minlength="3" autocomplete="off" [disabled]="!isFormReady">
+                      </mat-form-field>
+                  </div>
+                  <div class="container-input">
+                      <mat-form-field style="width: 100%" hintLabel="Selecione as disciplinas do disciplina" appearance="outline" autocomplete="off">
+                          <mat-label>Professor</mat-label>
+                          <mat-select formControlName="professorId" name="professorId">
+                            <mat-option *ngFor="let professor of lista_professores" [value]="professor.id">{{professor.nome}}</mat-option>
+                         </mat-select>
+                      </mat-form-field>
+                  </div>
+                  <div class="" fxLayout="row" fxLayoutAlign="end center" style="margin-top:30px">                    
+                      <div fxFlex>
+                          <button type="sumit" mat-raised-button color="primary" 
+                          [disabled]="form.invalid || !isFormReady">{{!id?'Inserir':'Atualizar'}} Disciplina</button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </mat-card-content>
+</mat-card>

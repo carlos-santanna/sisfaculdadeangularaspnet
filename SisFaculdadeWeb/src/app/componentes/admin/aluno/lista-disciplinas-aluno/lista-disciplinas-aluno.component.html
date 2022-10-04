@@ -1,0 +1,72 @@
+<mat-card class="example-card">
+  <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+          <p-avatar styleClass="p-mr-2" size="large" shape="circle">
+              <mat-icon mat-list-icon>library_books</mat-icon>
+          </p-avatar>
+      </div>
+      <mat-card-title>
+          <div class="mat-h1">{{nomeAluno}}</div>
+      </mat-card-title>
+      <mat-card-subtitle>Disciplinas cadastradas no aluno</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form">
+      <p-table #dt [value]="listaItems" [value]="listaItems" dataKey="id" styleClass="p-datatable-customers" 
+      [rowHover]="true" [rows]="1000" [showCurrentPageReport]="true" [rowsPerPageOptions]="[1000,1500,2000]"
+       [loading]="loading" responsiveLayout="scroll" [paginator]="false"
+          [globalFilterFields]="['nome']">
+          
+          <ng-template pTemplate="header">
+              <tr>
+                  
+                  <th pSortableColumn="curso">Curso
+                    <p-sortIcon field="curso"></p-sortIcon>
+                </th>
+                <th pSortableColumn="professorNome" style="text-align:center">Professor
+                    <p-sortIcon field="professorNome"></p-sortIcon>
+                    
+                </th>
+                  <th pSortableColumn="nome" style="text-align:center">Disciplina
+                      <p-sortIcon field="nome"></p-sortIcon>
+                  </th>
+                  
+
+                  <th pSortableColumn="nota" style="text-align:center">Média
+                      
+                  </th>                  
+              </tr>
+              
+          </ng-template>
+          <ng-template pTemplate="body" let-lista>
+              <tr>
+                  <td><a (click)="criarEditar(lista.curso)" class="link-click">{{lista.curso}}</a></td>
+                  <td >{{lista.professorNome}}</td>
+                  <td>{{lista.nome}}</td>
+                  
+
+                  <td style="text-align:center">
+                    <strong>Nota:</strong> {{lita.nota}}
+                    <div class="dvLocalNota">
+                        <mat-form-field style="width: 100px" appearance="outline">
+                            <mat-label>Nota</mat-label>                            
+                            <input [name]="'nota'+lista.custoId+''+lista.disciplinaId+''+lista.alunoId" matInput [(ngModel)]="lista.nota" maxlength="4"
+                             placeholder="Nota" matInput
+                            required minlength="3" autocomplete="off" [disabled]="!isFormReady">
+                        </mat-form-field>
+                       
+                    </div>
+                </td>                  
+              </tr>
+          </ng-template>
+      </p-table>
+    </form>
+    <button mat-raised-button color="primary" style="margin-top: 20px" (click)="gravaInfoNota()">
+        <mat-icon>add</mat-icon>
+        Registrar Notas</button> 
+  </mat-card-content>
+
+</mat-card>
+
+
+

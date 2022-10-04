@@ -1,0 +1,52 @@
+<mat-toolbar [color]="colorHeader?colorHeader:''" class="toolbar" [style]="corHeader?'background-color:'+corHeader:''">
+    <mat-toolbar-row class="mat-elevation-z2">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon (click)="abreOuFechaSideBar()" *ngIf="sidenavIsOpened==='' || sidenavIsOpened==='opened'">menu</mat-icon>
+      <mat-icon (click)="abreOuFechaSideBar()" *ngIf="sidenavIsOpened==='hide'">close</mat-icon>
+    </button>
+        <span>{{titulo_pagina?titulo_pagina:''}}</span>
+        <span class="example-spacer"></span>
+        <button mat-button [matMenuTriggerFor]="menu" *ngIf="podeLogar && isLoggedIn">
+          <p-avatar
+        icon="pi pi-user"
+        styleClass="p-mr-2"
+        [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"
+        shape="circle"
+      ></p-avatar>
+    </button>
+
+        <mat-menu #menu="matMenu">
+            <div class="dvBtnsAreaLogin">
+                <div class="no-logged" *ngIf="!isLoggedIn">
+                    <button mat-menu-item>
+            <mat-icon>
+              login
+            </mat-icon>
+            Efetuar Login
+          </button>
+                </div>
+                <div class="logged" *ngIf="isLoggedIn">
+                    <button mat-menu-item>
+            <mat-icon>account_circle</mat-icon>
+            {{getPrimeiroNomeUsuarioLoggedin()}}
+          </button>
+                    <button mat-menu-item (click)="goToAlteraSenha()">
+            <mat-icon>
+              lock_reset
+            </mat-icon>
+            Alterar senha
+          </button>
+                    <button mat-menu-item (click)="logout()">
+            <mat-icon>
+              logout
+            </mat-icon>
+            Efetuar Logout
+          </button>
+
+
+                </div>
+            </div>
+        </mat-menu>
+
+    </mat-toolbar-row>
+</mat-toolbar>

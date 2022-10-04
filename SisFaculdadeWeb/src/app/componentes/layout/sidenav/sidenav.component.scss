@@ -1,0 +1,137 @@
+/* .mat-sidenav {
+    width: 200px;
+}
+
+.content-page {
+    padding: 10px;
+}
+
+.sidenav-submenu {
+    padding-left: 10px;
+    background-color: #fff;
+}
+
+.sidenav-submenu2 {
+    padding-left: 10px;
+    background-color: #fff !important;
+}
+
+.mat-drawer-inner-container {
+    overflow: hidden !important;
+} */
+
+mat-toolbar {
+    background: #004a9f;
+    color: white;
+}
+
+mat-sidenav {
+    margin: 16px;
+    width: 200px;
+    border-right: none;
+    // background: #002b5c;
+    // color: white;
+    border-radius: 10px;
+    padding: 16px 0px;
+    text-align: center;
+}
+
+.content {
+    // height: calc(100vh - 130px);
+    border-radius: 10px;
+    margin: 16px;
+    // padding: 16px;
+    overflow: auto;
+    min-height: calc(100vh - 96px);
+}
+
+.content_with_side_menu {
+    @media only screen and (min-width: 321px) {
+        margin-left: 32px;
+    }
+}
+
+mat-sidenav-container {
+    // height: calc(100vh - 65px);
+}
+
+:host ::ng-deep .p-panelmenu .p-panelmenu-panel {
+    box-shadow: none
+}
+
+// :host ::ng-deep .p-panelmenu-header {
+//     background: #245995 !important;
+// }
+// :host ::ng-deep .p-panelmenu {
+//     background-color: red;
+// }
+// :host ::ng-deep .p-panelmenu {
+//     background-color: red;
+// }
+// :host ::ng-deep .p-panelmenu {
+//     background: #245995 !important;
+// }
+// :host ::ng-deep .p-menuitem {
+//     // background: #245995 !important;
+//     border-color: white;
+//     color: rgba(0, 0, 0, 0.87);
+//     border-bottom-right-radius: 0;
+//     border-bottom-left-radius: 0;
+// }
+// :host ::ng-deep .p-panelmenu .p-panelmenu-header.p-highlight>a {
+//     background: #ca6262;
+//     border-color: transparent;
+//     color: rgba(0, 0, 0, 0.87);
+//     border-bottom-right-radius: 0;
+//     border-bottom-left-radius: 0;
+// }
+.menu-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1rem;
+    mat-icon {
+        margin-right: 8px;
+    }
+}
+
+.avatar {
+    margin-top: 16px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.name {
+    margin-top: 8px;
+    font-weight: normal;
+}
+
+.nameUser {
+    margin-top: 2px;
+    font-size: 0.9rem;
+    color: grey;
+}
+
+mat-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+:host ::ng-deep .p-panelmenu .p-submenu-list {
+    margin: 10px !important;
+    padding: 0 !important;
+    list-style: none;
+    margin-top: 0 !important;
+}
+
+:host ::ng-deep .p-panelmenu .p-panelmenu-content {
+    padding: 0 !important
+}
+
+.software-version {
+    font-size: 0.9rem;
+    color: grey;
+}

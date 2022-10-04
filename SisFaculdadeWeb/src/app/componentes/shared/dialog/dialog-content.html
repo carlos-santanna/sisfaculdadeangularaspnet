@@ -1,0 +1,16 @@
+<h2 mat-dialog-title *ngIf="data.title">{{data.title}}</h2>
+<mat-dialog-content [innerHTML]="data.content" *ngIf="data.content">
+</mat-dialog-content>
+
+
+<div id="pluswrap" *ngIf="data.showSpinner">
+    <mat-spinner diameter="50" strokeWidth="5"></mat-spinner>
+
+</div>
+<div class="">
+    <mat-dialog-actions *ngIf="data.close || data.actions" fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+        <button mat-button [mat-dialog-close]="true" *ngIf="data.actions" (click)="data.actions.callback()">{{data.actions.nome}}</button>
+        <button mat-button [mat-dialog-close]="true" *ngIf="data.close">Fechar</button>
+    </mat-dialog-actions>
+</div>
